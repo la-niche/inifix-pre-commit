@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "inifix-pre-commit"
-version = "0.0.0"
+version = "1.0.0"
 description = "Pre-commit hooks backed by inifix (non-functional)"
 readme = "README.md"
 authors = [
@@ -18,7 +18,17 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.11"
-dependencies = []
+
+# reproduce the entire dependency tree from inifix-cli, with exact versions pinned
+dependencies = [
+    "inifix-cli==1.0.0",
+    "click==8.3.3",
+    "inifix==6.1.2",
+    "typing-extensions==4.15.0", # TODO: drop this
+]
 
 [project.urls]
 Homepage = "https://github.com/la-niche/inifix-pre-commit"
+
+[tool.uv.sources]
+inifix-cli = { git = "https://github.com/neutrinoceros/inifix.git" }
