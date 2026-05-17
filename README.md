@@ -1,6 +1,51 @@
 # inifix-pre-commit
-pre-commit hooks for inifile validation and formatting, backed by inifix
 
-⚠️ This package is published to PyPI purely as a placeholder (defending against namesquatting attacks)
-⚠️ It it not functional and won't be updated.
-⚠️ See https://github.com/la-niche/inifix-pre-commit
+This repository provides two `pre-commit` hooks on top of `inifix` (and its companion
+command line interface, `inifix-cli`):
+- `inifix-validate`
+- `inifix-format`
+
+Both these hooks can be configured by adding the following snippets to
+`.pre-commit-config.yaml`
+
+```yaml
+  - repo: https://github.com/la-niche/inifix-pre-commit.git
+    rev: v1.0.0
+    hooks:
+      - id: inifix-validate
+```
+or
+```yaml
+  - repo: https://github.com/la-niche/inifix-pre-commit.git
+    rev: v1.0.0
+    hooks:
+      - id: inifix-format
+```
+
+Note that `inifix-format` also validates data by default, so it is redundant to
+enable both hooks with no further configuration. Validation and formatting may
+nonetheless be decoupled as
+```patch
+  - repo: https://github.com/la-niche/inifix-pre-commit.git
+    rev: v1.0.0
+    hooks:
+    - id: inifix-validate
+    - id: inifix-format
++     args: [--skip-validation]
+```
+
+## Selecting files
+
+By default, both hooks target files matching the regular expression `(\.ini)$`.
+It is possible to override this expression as, e.g.,
+```patch
+   hooks:
+   - id: inifix-format
++    files: (\.ini|\.par)$
+```
+
+For convenience, in cases where the appropriate regular expression is hard to write,
+for instance if your project contains some files with a `.ini` extension that are not
+intended to be used with idefix, you may refine the selection via exclude patterns,
+using `--exclude` and/or `--extend-exclude`. By default, files named `pytest.ini` or
+`tox.ini` are excluded.
