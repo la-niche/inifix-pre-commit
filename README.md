@@ -49,3 +49,15 @@ for instance if your project contains some files with a `.ini` extension that ar
 intended to be used with idefix, you may refine the selection via exclude patterns,
 using `--exclude` and/or `--extend-exclude`. By default, files named `pytest.ini` or
 `tox.ini` are excluded.
+
+## Dependencies
+
+This repository serves a minimal Python metapackage, which pins *all* dependencies
+exactly (including the build backend), with the goal of making it as resilient as
+possible to supply chain attacks.
+
+As of version 1.0.0, the entire dependency tree is as follow
+- `inifix==7.0.0`
+- `click==8.3.3`
+- `flit-core==3.12.0` (build time)
+
