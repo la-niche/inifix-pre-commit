@@ -23,12 +23,8 @@ requires-python = ">=3.11"
 dependencies = [
     "inifix-cli==1.0.0",
     "click==8.3.3",
-    "inifix==6.1.2",
-    "typing-extensions==4.15.0", # TODO: drop this
+    "inifix==7.0.0",
 ]
 
 [project.urls]
 Homepage = "https://github.com/la-niche/inifix-pre-commit"
-
-[tool.uv.sources]
-inifix-cli = { git = "https://github.com/neutrinoceros/inifix.git" }
