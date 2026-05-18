@@ -64,6 +64,5 @@ jobs:
     - name: Run pre-commit hooks
       run: |
         cd downstream
-        uvx --with pre-commit-uv \
-          pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
-            --all-files --show-diff-on-failure
+        uvx pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
+          --all-files --show-diff-on-failure
