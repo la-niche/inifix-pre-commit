@@ -25,17 +25,24 @@ wheels = [
 
 [[package]]
 name = "inifix"
-version = "6.1.2"
-source = { git = "https://github.com/neutrinoceros/inifix.git?subdirectory=lib%2Finifix#e8a8964cea471afcf0270751bd5934e6dc13d422" }
+version = "7.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/11/ac/fbb1a2984a15ad786c4174ec707752b5b09946a53fe9faccc5d86ba40363/inifix-7.0.0.tar.gz", hash = "sha256:f49dfe1beef23ba9bd5f46be698f7b1f8593eb83f21da029bb5f6cbf9f81cfcd", size = 40435, upload-time = "2026-05-18T13:40:10.803Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7b/27/23893f62f2a40ba03df1ca158672edb9c80cf30d87212109a1b62d63dc43/inifix-7.0.0-py3-none-any.whl", hash = "sha256:afcab355ebf5bafedd2274717dad0b90b15a3ebc1243293fd39a0f08bfd1f64a", size = 28709, upload-time = "2026-05-18T13:40:09.601Z" },
+]
 
 [[package]]
 name = "inifix-cli"
-version = "0.1.0"
-source = { git = "https://github.com/neutrinoceros/inifix.git#e8a8964cea471afcf0270751bd5934e6dc13d422" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "inifix" },
-    { name = "typing-extensions", marker = "python_full_version < '3.12'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3e/02/bb35579860d2398f3e4de05d6f0cd14da99ef0e46cc81e0bb93a5f478ef9/inifix_cli-1.0.0.tar.gz", hash = "sha256:4d244e2da85f5df44216c788d63742d6a5a8409b855e4f25ce36a298ba3e4aea", size = 19973, upload-time = "2026-05-18T13:34:05.454Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/50/42/79cec070a8e8191de0d7a77243fbe7b373233f3d7d13615d4a11b1804532/inifix_cli-1.0.0-py3-none-any.whl", hash = "sha256:95e790ac91f61166f5dd95b7ae96db7ff84a49d02510595ec61534024df2f6ec", size = 17589, upload-time = "2026-05-18T13:34:03.741Z" },
 ]
 
 [[package]]
@@ -46,22 +53,11 @@ dependencies = [
     { name = "click" },
     { name = "inifix" },
     { name = "inifix-cli" },
-    { name = "typing-extensions" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "click", specifier = "==8.3.3" },
-    { name = "inifix", specifier = "==6.1.2" },
-    { name = "inifix-cli", git = "https://github.com/neutrinoceros/inifix.git" },
-    { name = "typing-extensions", specifier = "==4.15.0" },
-]
-
-[[package]]
-name = "typing-extensions"
-version = "4.15.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/72/94/1a15dd82efb362ac84269196e94cf00f187f7ed21c242792a923cdb1c61f/typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466", size = 109391, upload-time = "2025-08-25T13:49:26.313Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/18/67/36e9267722cc04a6b9f15c7f3441c2363321a3ea07da7ae0c0707beb2a9c/typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548", size = 44614, upload-time = "2025-08-25T13:49:24.86Z" },
+    { name = "inifix", specifier = "==7.0.0" },
+    { name = "inifix-cli", specifier = "==1.0.0" },
 ]
