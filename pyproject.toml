@@ -13,9 +13,9 @@ authors = [
 license = "GPL-3.0-only"
 license-files = ["LICENSE"]
 classifiers = [
-    "Development Status :: 1 - Planning",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
 ]
 requires-python = ">=3.11"
 
