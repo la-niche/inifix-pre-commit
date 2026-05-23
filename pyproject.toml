@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "inifix-pre-commit"
-version = "1.0.0"
+version = "1.0.1"
 description = "Pre-commit hooks backed by inifix (non-functional)"
 readme = "README.md"
 authors = [
