@@ -24,6 +24,10 @@ dependencies = [
     "inifix-cli==1.0.0",
     "click==8.3.3",
     "inifix==7.0.0",
+    # via click
+    # should be removed when click is upgraded to 8.5 or newer
+    # https://github.com/pallets/click/pull/3505
+    "colorama==0.4.6 ; platform_system == 'Windows'",
 ]
 
 [project.urls]

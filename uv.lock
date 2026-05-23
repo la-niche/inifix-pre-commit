@@ -51,6 +51,7 @@ version = "1.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
     { name = "inifix" },
     { name = "inifix-cli" },
 ]
@@ -58,6 +59,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "click", specifier = "==8.3.3" },
+    { name = "colorama", marker = "sys_platform == 'win32'", specifier = "==0.4.6" },
     { name = "inifix", specifier = "==7.0.0" },
     { name = "inifix-cli", specifier = "==1.0.0" },
 ]
