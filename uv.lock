@@ -34,15 +34,15 @@ wheels = [
 
 [[package]]
 name = "inifix-cli"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "inifix" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3e/02/bb35579860d2398f3e4de05d6f0cd14da99ef0e46cc81e0bb93a5f478ef9/inifix_cli-1.0.0.tar.gz", hash = "sha256:4d244e2da85f5df44216c788d63742d6a5a8409b855e4f25ce36a298ba3e4aea", size = 19973, upload-time = "2026-05-18T13:34:05.454Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2f/9a/7e497f2d1d7bd3e9aaaee5ddca9054cf0d996c2b86d016c2ce656d58815e/inifix_cli-1.1.0.tar.gz", hash = "sha256:832145e024a22299ba2ce784e4c1dbdaf56457b32ad27c9da05439ae7ea0ab45", size = 20053, upload-time = "2026-05-23T17:35:55.95Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/50/42/79cec070a8e8191de0d7a77243fbe7b373233f3d7d13615d4a11b1804532/inifix_cli-1.0.0-py3-none-any.whl", hash = "sha256:95e790ac91f61166f5dd95b7ae96db7ff84a49d02510595ec61534024df2f6ec", size = 17589, upload-time = "2026-05-18T13:34:03.741Z" },
+    { url = "https://files.pythonhosted.org/packages/52/b1/aff722f2146fb083f5190d20822363a6490c350ddcbd5a4157d0fd6dad87/inifix_cli-1.1.0-py3-none-any.whl", hash = "sha256:f1ff5096abdb479d852ade059166b7ac3a9b4134cb9792fe4785ad0fef74d8e9", size = 17632, upload-time = "2026-05-23T17:35:54.563Z" },
 ]
 
 [[package]]
@@ -61,5 +61,5 @@ requires-dist = [
     { name = "click", specifier = "==8.3.3" },
     { name = "colorama", marker = "sys_platform == 'win32'", specifier = "==0.4.6" },
     { name = "inifix", specifier = "==7.0.0" },
-    { name = "inifix-cli", specifier = "==1.0.0" },
+    { name = "inifix-cli", specifier = "==1.1.0" },
 ]
