@@ -57,7 +57,7 @@ exactly (including the build backend), with the goal of making it as resilient a
 possible to supply chain attacks.
 
 As of version 1.0.1, the entire dependency tree is as follow
-- `inifix-cli==1.0.0`
+- `inifix-cli==1.1.0`
   - `inifix==7.0.0`
   - `click==8.3.3`
     - `colorama==0.4.6` (Windows only)

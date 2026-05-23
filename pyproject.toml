@@ -21,7 +21,7 @@ requires-python = ">=3.11"
 
 # reproduce the entire dependency tree from inifix-cli, with exact versions pinned
 dependencies = [
-    "inifix-cli==1.0.0",
+    "inifix-cli==1.1.0",
     "click==8.3.3",
     "inifix==7.0.0",
     # via click
