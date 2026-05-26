@@ -62,4 +62,3 @@ As of version 1.0.1, the entire dependency tree is as follow
   - `click==8.3.3`
     - `colorama==0.4.6` (Windows only)
 - `flit-core==3.12.0` (build time)
-

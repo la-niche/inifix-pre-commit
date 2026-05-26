@@ -19,4 +19,3 @@ This version's entire dependency tree is as follow
 - `inifix==7.0.0`
 - `click==8.3.3`
 - `flit-core==3.12.0` (build time)
-
