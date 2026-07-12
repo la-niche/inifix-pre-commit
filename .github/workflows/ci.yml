@@ -76,7 +76,9 @@ jobs:
       with:
         enable-cache: false
     - name: Run pre-commit hooks
+      shell: bash
       run: |
         cd downstream
-        RUST_LOG=uv=debug uvx pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
+        PYVER="${${{matrix.interpreter.pyver}}%-dev}"
+        RUST_LOG=uv=debug uvx -p "$PYVER" pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
           --all-files --show-diff-on-failure
