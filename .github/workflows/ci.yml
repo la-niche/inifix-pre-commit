@@ -82,5 +82,5 @@ jobs:
       shell: bash
       run: |
         cd downstream
-        uvx -p $(which python) pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
+        uvx -p $(which python) pre-commit@${{ matrix.pre-commit-version }} try-repo ../ \
           --all-files --show-diff-on-failure
