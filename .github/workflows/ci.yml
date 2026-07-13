@@ -82,5 +82,5 @@ jobs:
       shell: bash
       run: |
         cd downstream
-        RUST_LOG=uv=debug uvx -p $(which python) pre-commit@${{ matrix.pre-commit-version }} try-repo ../ \
+        RUST_LOG=uv=debug uvx -p $(which python) pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
           --all-files --show-diff-on-failure
