@@ -76,7 +76,7 @@ jobs:
       with:
         enable-cache: false
     - run: |
-        echo "UV_PYTHON=only-system" >> "$GITHUB_ENV"
+        echo "UV_PYTHON=$(which python)" >> "$GITHUB_ENV"
     - run: python --version --version && which python # debug
     - name: Run pre-commit hooks
       shell: bash
