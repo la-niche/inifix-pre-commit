@@ -67,18 +67,19 @@ jobs:
       with:
         python-version: ${{ matrix.interpreter.pyver }}
     - uses: deadsnakes/action@e640ac8743173a67cca4d7d77cd837e514bf98e8 # v3.2.0
-      if: endsWith(matrix.python-version, '-dev')
+      if: endsWith(matrix.python-version.pyver, '-dev')
       with:
         python-version: ${{ matrix.interpreter.pyver }}
         debug: true
         nogil: matrix.interpreter.free-threading
-    - uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
-      with:
-        enable-cache: false
+    - run: python --version --version && which python # debug
+    - if: ${{ matrix.pre-commit-version == 'latest' }}
+      run: pipx install --python $(which python) pre-commit
+    - if: ${{ matrix.pre-commit-version != 'latest' }}
+      run: pipx install --python $(which python) pre-commit==${{ matrix.pre-commit-version }}
     - name: Run pre-commit hooks
       shell: bash
       run: |
         cd downstream
-        PYVER="${${{matrix.interpreter.pyver}}%-dev}"
-        RUST_LOG=uv=debug uvx -p "$PYVER" pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
+        pre-commit try-repo ../main \
           --all-files --show-diff-on-failure
