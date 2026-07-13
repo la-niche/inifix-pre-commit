@@ -74,7 +74,7 @@ jobs:
         nogil: matrix.interpreter.free-threading
     - uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
       with:
-        prune-cache: false
+        enable-cache: false
     - run: |
         echo "UV_PYTHON=only-system" >> "$GITHUB_ENV"
     - run: python --version --version && which python # debug
