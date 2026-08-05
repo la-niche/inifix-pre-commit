@@ -27,14 +27,22 @@ permissions: {}
 
 jobs:
   checks:
-    name: py${{ matrix.python-version }} VS pre-commit ${{ matrix.pre-commit-version }} VS ${{ matrix.downstream }}
+    name: py${{ matrix.interpreter.pyver }} VS pre-commit ${{ matrix.pre-commit-version }} VS ${{ matrix.downstream }}
     strategy:
       matrix:
         os:
         - ubuntu-latest
-        python-version:
-        - 3.11.0
-        - '3.14'
+        interpreter:
+        # the free-threading field is unused for stable versions but left for consistency
+        - {pyver: 3.11.0, free-threading: false}
+        - {pyver: 3.12, free-threading: false}
+        - {pyver: 3.13, free-threading: false}
+        - {pyver: 3.14, free-threading: false}
+        - {pyver: 3.14t, free-threading: true}
+        - {pyver: 3.15-dev, free-threading: false}
+        - {pyver: 3.15-dev, free-threading: true}
+        - {pyver: 3.16-dev, free-threading: false}
+        - {pyver: 3.16-dev, free-threading: true}
         pre-commit-version:
         - 3.8.0
         - latest
@@ -55,14 +63,24 @@ jobs:
         repository: ${{ matrix.downstream }}
         persist-credentials: false
     - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
-      # 3.11.0 isn't available through setup-uv
+      if: "!endsWith(matrix.interpreter.pyver, '-dev')"
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ matrix.interpreter.pyver }}
+    - uses: deadsnakes/action@e640ac8743173a67cca4d7d77cd837e514bf98e8 # v3.2.0
+      if: endsWith(matrix.interpreter.pyver, '-dev')
+      with:
+        python-version: ${{ matrix.interpreter.pyver }}
+        debug: true
+        nogil: matrix.interpreter.free-threading
     - uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
       with:
         enable-cache: false
+    - run: |
+        echo "UV_PYTHON=$(which python)" >> "$GITHUB_ENV"
+    - run: python --version && which python # debug
     - name: Run pre-commit hooks
+      shell: bash
       run: |
         cd downstream
-        uvx pre-commit@${{ matrix.pre-commit-version }} try-repo ../main \
-          --all-files --show-diff-on-failure
+        RUST_LOG=uv=debug uvx pre-commit@${{ matrix.pre-commit-version }} --help
+        # try-repo ../main --all-files --show-diff-on-failure
