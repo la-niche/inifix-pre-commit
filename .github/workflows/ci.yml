@@ -35,12 +35,12 @@ jobs:
         interpreter:
         # the free-threading field is unused for stable versions but left for consistency
         - {pyver: 3.11.0, free-threading: false}
-        - {pyver: 3.12, free-threading: false}
-        - {pyver: 3.13, free-threading: false}
-        - {pyver: 3.14, free-threading: false}
+        - {pyver: '3.12', free-threading: false}
+        - {pyver: '3.13', free-threading: false}
+        - {pyver: '3.14', free-threading: false}
+        - {pyver: '3.15', free-threading: false}
         - {pyver: 3.14t, free-threading: true}
-        - {pyver: 3.15-dev, free-threading: false}
-        - {pyver: 3.15-dev, free-threading: true}
+        - {pyver: 3.15t, free-threading: true}
         - {pyver: 3.16-dev, free-threading: false}
         - {pyver: 3.16-dev, free-threading: true}
         pre-commit-version:
