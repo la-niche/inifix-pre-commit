@@ -32,9 +32,10 @@ jobs:
       matrix:
         os:
         - ubuntu-latest
-        python-version:
-        - 3.11.0
-        - '3.14'
+        python_version:
+        - 3.11.0 # oldest supported
+        - '3.15' # newest supported (stable)
+        - '3.16' # dev (unstable)
         pre-commit-version:
         - 3.8.0
         - latest
@@ -54,12 +55,19 @@ jobs:
         path: downstream
         repository: ${{ matrix.downstream }}
         persist-credentials: false
-    - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+    - if: ${{ matrix.python_version == '3.11.0' }}
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
       # 3.11.0 isn't available through setup-uv
       with:
-        python-version: ${{ matrix.python-version }}
-    - uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
+        python-version: ${{ matrix.python_version }}
+    - if: ${{ matrix.python-version == '3.11.0' }}
+      uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
       with:
+        enable-cache: false
+    - if: ${{ matrix.python-version != '3.11.0' }}
+      uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
+      with:
+        python-version: ${{ matrix.python_version }}
         enable-cache: false
     - name: Run pre-commit hooks
       run: |
