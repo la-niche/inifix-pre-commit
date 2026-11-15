@@ -27,7 +27,7 @@ permissions: {}
 
 jobs:
   checks:
-    name: py${{ matrix.python-version }} VS pre-commit ${{ matrix.pre-commit-version }} VS ${{ matrix.downstream }}
+    name: ${{ matrix.platform.os }} py${{ matrix.platform.python-version }} VS pre-commit ${{ matrix.pre-commit-version }} VS ${{ matrix.downstream }}
     strategy:
       matrix:
         platform:
@@ -57,7 +57,7 @@ jobs:
       uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
       # 3.11.0 isn't available through setup-uv
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ matrix.platform.python-version }}
     - if: ${{ matrix.platform.python-version == '3.11.0' }}
       uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
       with:
@@ -65,7 +65,7 @@ jobs:
     - if: ${{ matrix.platform.python-version != '3.11.0' }}
       uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ matrix.platform.python-version }}
         enable-cache: false
     - name: Run pre-commit hooks
       run: |
