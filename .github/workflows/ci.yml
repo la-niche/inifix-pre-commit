@@ -30,12 +30,10 @@ jobs:
     name: py${{ matrix.python-version }} VS pre-commit ${{ matrix.pre-commit-version }} VS ${{ matrix.downstream }}
     strategy:
       matrix:
-        os:
-        - ubuntu-latest
-        python_version:
-        - 3.11.0 # oldest supported
-        - '3.15' # newest supported (stable)
-        - '3.16' # dev (unstable)
+        platform:
+        - {os: ubuntu-24.04, python-version: 3.11.0}  # oldest supported
+        - {os: ubuntu-latest, python-version: '3.15'}  # newest supported (stable)
+        - {os: ubuntu-latest, python-version: '3.16'}  # dev (unstable)
         pre-commit-version:
         - 3.8.0
         - latest
@@ -44,7 +42,7 @@ jobs:
         - la-niche/nonos
         - neutrinoceros/yt_idefix
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.platform.os }}
     steps:
     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd   # v6.0.2
       with:
@@ -55,19 +53,19 @@ jobs:
         path: downstream
         repository: ${{ matrix.downstream }}
         persist-credentials: false
-    - if: ${{ matrix.python_version == '3.11.0' }}
+    - if: ${{ matrix.platform.python-version == '3.11.0' }}
       uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
       # 3.11.0 isn't available through setup-uv
       with:
-        python-version: ${{ matrix.python_version }}
-    - if: ${{ matrix.python-version == '3.11.0' }}
+        python-version: ${{ matrix.python-version }}
+    - if: ${{ matrix.platform.python-version == '3.11.0' }}
       uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
       with:
         enable-cache: false
-    - if: ${{ matrix.python-version != '3.11.0' }}
+    - if: ${{ matrix.platform.python-version != '3.11.0' }}
       uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867   # v7.1.6
       with:
-        python-version: ${{ matrix.python_version }}
+        python-version: ${{ matrix.python-version }}
         enable-cache: false
     - name: Run pre-commit hooks
       run: |
